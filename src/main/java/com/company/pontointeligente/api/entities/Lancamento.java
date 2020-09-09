@@ -14,9 +14,7 @@ public class Lancamento {
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date data;
-    @Column(nullable = false)
     private String descricao;
-    @Column(nullable = false)
     private String localizacao;
     @Column(name = "data_criacao", nullable = false)
     private Date dataCriacao;
