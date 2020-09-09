@@ -22,11 +22,11 @@ public class Funcionario {
     private String senha;
     @Column(nullable = false)
     private String cpf;
-    @Column(name = "valor_hora", nullable = false)
+    @Column(name = "valor_hora")
     private BigDecimal valorHora;
-    @Column(name = "qtd_horas_trabalho_dia", nullable = false)
+    @Column(name = "qtd_horas_trabalho_dia")
     private Float qtdHorasTrabalhoDia;
-    @Column(name = "qtd_horas_almoco", nullable = false)
+    @Column(name = "qtd_horas_almoco")
     private Float qtdHorasAlmoco;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
