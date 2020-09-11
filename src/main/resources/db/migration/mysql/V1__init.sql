@@ -11,7 +11,7 @@ ALTER TABLE `empresa` MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 CREATE TABLE `funcionario` (
     `id` bigint(20) NOT NULL,
-    `cnpj` varchar(255) NOT NULL,
+    `cpf` varchar(255) NOT NULL,
     `data_atualizacao` datetime NOT NULL,
     `data_criacao` datetime NOT NULL,
     `email` varchar(255) NOT NULL,
