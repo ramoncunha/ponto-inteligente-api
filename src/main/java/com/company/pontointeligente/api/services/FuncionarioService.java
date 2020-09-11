@@ -10,7 +10,7 @@ public interface FuncionarioService {
      * Persiste um funcionário na base de dados.
      *
      * @param funcionario
-     * @return
+     * @return Funcionario
      */
     Funcionario persistir(Funcionario funcionario);
 
@@ -18,7 +18,7 @@ public interface FuncionarioService {
      * Busca e retorna um funcionário dado um CPF.
      *
      * @param cpf
-     * @return
+     * @return Optional<Funcionario>
      */
     Optional<Funcionario> buscarPorCpf(String cpf);
 
@@ -26,7 +26,7 @@ public interface FuncionarioService {
      * Busca e retorna um funcionário dado um email.
      *
      * @param email
-     * @return
+     * @return Optional<Funcionario>
      */
     Optional<Funcionario> buscarPorEmail(String email);
 
@@ -34,7 +34,7 @@ public interface FuncionarioService {
      * Busca e retorna um funcionário por ID.
      *
      * @param id
-     * @return
+     * @return Optional<Funcionario>
      */
     Optional<Funcionario> buscaPorId(Long id);
 }
