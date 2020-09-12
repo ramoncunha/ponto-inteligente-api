@@ -2,6 +2,7 @@ package com.company.pontointeligente.api.utils;
 
 import com.company.pontointeligente.api.dtos.CadastroPFDto;
 import com.company.pontointeligente.api.dtos.CadastroPJDto;
+import com.company.pontointeligente.api.dtos.EmpresaDto;
 import com.company.pontointeligente.api.entities.Empresa;
 import com.company.pontointeligente.api.entities.Funcionario;
 import com.company.pontointeligente.api.enums.PerfilEnum;
@@ -74,5 +75,14 @@ public abstract class ConversorDto {
             .ifPresent(valorHora -> cadastroPFDto.setValorHora(Optional.of(valorHora.toString())));
 
         return cadastroPFDto;
+    }
+
+    public static EmpresaDto converterEmpresaParaEmpresaDto(Empresa empresa) {
+        EmpresaDto empresaDto = new EmpresaDto();
+        empresaDto.setId(empresa.getId());
+        empresaDto.setCnpj(empresa.getCnpj());
+        empresaDto.setRazaoSocial(empresa.getRazaoSocial());
+
+        return empresaDto;
     }
 }
