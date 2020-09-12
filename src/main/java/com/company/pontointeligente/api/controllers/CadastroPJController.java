@@ -7,6 +7,7 @@ import com.company.pontointeligente.api.enums.PerfilEnum;
 import com.company.pontointeligente.api.response.Response;
 import com.company.pontointeligente.api.services.EmpresaService;
 import com.company.pontointeligente.api.services.FuncionarioService;
+import com.company.pontointeligente.api.utils.ConversorDto;
 import com.company.pontointeligente.api.utils.PasswordUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,8 @@ public class CadastroPJController {
         Response<CadastroPJDto> response = new Response<>();
 
         this.validarDadosExistentes(cadastroPJDto, result);
-        Empresa empresa = this.converterDtoParaEmpresa(cadastroPJDto);
-        Funcionario funcionario = this.converterDtoParaFuncionario(cadastroPJDto);
+        Empresa empresa = ConversorDto.converterPJDtoParaEmpresa(cadastroPJDto);
+        Funcionario funcionario = ConversorDto.converterPJDtoParaFuncionario(cadastroPJDto);
 
         if(result.hasErrors()) {
             log.error("Erro validando dados de cadastro PJ: {}", result.getAllErrors());
@@ -52,7 +53,7 @@ public class CadastroPJController {
         funcionario.setEmpresa(empresa);
         this.funcionarioService.persistir(funcionario);
 
-        response.setData(this.converterCadastroPJDto(funcionario));
+        response.setData(ConversorDto.converterFuncionarioParaPJDto(funcionario));
         return ResponseEntity.ok(response);
     }
 
@@ -65,36 +66,5 @@ public class CadastroPJController {
 
         this.funcionarioService.buscarPorEmail(cadastroPJDto.getEmail())
             .ifPresent(func -> result.addError(new ObjectError("funcionario", "Email já existente.")));
-    }
-
-    private Empresa converterDtoParaEmpresa(CadastroPJDto cadastroPJDto) {
-        Empresa empresa = new Empresa();
-        empresa.setCnpj(cadastroPJDto.getCnpj());
-        empresa.setRazaoSocial(cadastroPJDto.getRazaoSocial());
-
-        return empresa;
-    }
-
-    private Funcionario converterDtoParaFuncionario(CadastroPJDto cadastroPJDto) {
-        Funcionario funcionario = new Funcionario();
-        funcionario.setNome(cadastroPJDto.getNome());
-        funcionario.setEmail(cadastroPJDto.getEmail());
-        funcionario.setCpf(cadastroPJDto.getCpf());
-        funcionario.setPerfil(PerfilEnum.ROLE_ADMIN);
-        funcionario.setSenha(PasswordUtils.gerarBCrypt(cadastroPJDto.getSenha()));
-
-        return funcionario;
-    }
-
-    private CadastroPJDto converterCadastroPJDto(Funcionario funcionario) {
-        CadastroPJDto cadastroPJDto = new CadastroPJDto();
-        cadastroPJDto.setId(funcionario.getId());
-        cadastroPJDto.setNome(funcionario.getNome());
-        cadastroPJDto.setEmail(funcionario.getEmail());
-        cadastroPJDto.setCpf(funcionario.getCpf());
-        cadastroPJDto.setRazaoSocial(funcionario.getEmpresa().getRazaoSocial());
-        cadastroPJDto.setCnpj(funcionario.getEmpresa().getCnpj());
-
-        return cadastroPJDto;
     }
 }

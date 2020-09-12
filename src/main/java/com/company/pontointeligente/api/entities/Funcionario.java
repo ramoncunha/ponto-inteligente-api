@@ -102,7 +102,7 @@ public class Funcionario {
     }
 
     @Transient
-    public Optional<Float> getHorasTrabalhoDiaOpt() {
+    public Optional<Float> getQtdHorasTrabalhoDiaOpt() {
         return Optional.ofNullable(qtdHorasTrabalhoDia);
     }
 
@@ -112,6 +112,11 @@ public class Funcionario {
 
     public void setQtdHorasAlmoco(Float qtdHorasAlmoco) {
         this.qtdHorasAlmoco = qtdHorasAlmoco;
+    }
+
+    @Transient
+    public Optional<Float> getQtdHorasAlmocoOpt() {
+        return Optional.ofNullable(qtdHorasAlmoco);
     }
 
     public PerfilEnum getPerfil() {
