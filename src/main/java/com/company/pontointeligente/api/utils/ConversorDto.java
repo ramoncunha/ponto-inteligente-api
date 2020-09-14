@@ -3,6 +3,7 @@ package com.company.pontointeligente.api.utils;
 import com.company.pontointeligente.api.dtos.CadastroPFDto;
 import com.company.pontointeligente.api.dtos.CadastroPJDto;
 import com.company.pontointeligente.api.dtos.EmpresaDto;
+import com.company.pontointeligente.api.dtos.FuncionarioDto;
 import com.company.pontointeligente.api.entities.Empresa;
 import com.company.pontointeligente.api.entities.Funcionario;
 import com.company.pontointeligente.api.enums.PerfilEnum;
@@ -84,5 +85,20 @@ public abstract class ConversorDto {
         empresaDto.setRazaoSocial(empresa.getRazaoSocial());
 
         return empresaDto;
+    }
+
+    public static FuncionarioDto converterFuncionarioParaFuncionarioDto(Funcionario funcionario) {
+        FuncionarioDto funcionarioDto = new FuncionarioDto();
+        funcionarioDto.setId(funcionario.getId());
+        funcionarioDto.setEmail(funcionario.getEmail());
+        funcionarioDto.setNome(funcionario.getNome());
+        funcionario.getQtdHorasAlmocoOpt()
+            .ifPresent(qtdHorasAlmoco -> funcionarioDto.setQtdHorasAlmoco(Optional.of(Float.toString(qtdHorasAlmoco))));
+        funcionario.getQtdHorasTrabalhoDiaOpt()
+            .ifPresent(qtdHorasTrabalhoDia -> funcionarioDto.setQtdHorasTrabalhoDia(Optional.of(Float.toString(qtdHorasTrabalhoDia))));
+        funcionario.getValorHoraOpt()
+            .ifPresent(valorHora -> funcionarioDto.setValorHora(Optional.of(valorHora.toString())));
+
+        return funcionarioDto;
     }
 }
