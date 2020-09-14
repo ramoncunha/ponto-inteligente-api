@@ -1,14 +1,13 @@
 package com.company.pontointeligente.api.utils;
 
-import com.company.pontointeligente.api.dtos.CadastroPFDto;
-import com.company.pontointeligente.api.dtos.CadastroPJDto;
-import com.company.pontointeligente.api.dtos.EmpresaDto;
-import com.company.pontointeligente.api.dtos.FuncionarioDto;
+import com.company.pontointeligente.api.dtos.*;
 import com.company.pontointeligente.api.entities.Empresa;
 import com.company.pontointeligente.api.entities.Funcionario;
+import com.company.pontointeligente.api.entities.Lancamento;
 import com.company.pontointeligente.api.enums.PerfilEnum;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 public abstract class ConversorDto {
@@ -100,5 +99,19 @@ public abstract class ConversorDto {
             .ifPresent(valorHora -> funcionarioDto.setValorHora(Optional.of(valorHora.toString())));
 
         return funcionarioDto;
+    }
+
+    public static LancamentoDto converterLancamentoParaLancamentoDto(Lancamento lancamento) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        LancamentoDto lancamentoDto = new LancamentoDto();
+        lancamentoDto.setId(Optional.of(lancamento.getId()));
+        lancamentoDto.setData(dateFormat.format(lancamento.getData()));
+        lancamentoDto.setTipo(lancamento.getTipo().toString());
+        lancamentoDto.setDescricao(lancamento.getDescricao());
+        lancamentoDto.setLocalizacao(lancamento.getLocalizacao());
+        lancamentoDto.setFuncionarioId(lancamento.getId());
+
+        return lancamentoDto;
     }
 }
