@@ -5,8 +5,10 @@ import com.company.pontointeligente.api.entities.Empresa;
 import com.company.pontointeligente.api.entities.Funcionario;
 import com.company.pontointeligente.api.entities.Lancamento;
 import com.company.pontointeligente.api.enums.PerfilEnum;
+import com.company.pontointeligente.api.enums.TipoEnum;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
 
@@ -113,5 +115,34 @@ public abstract class ConversorDto {
         lancamentoDto.setFuncionarioId(lancamento.getId());
 
         return lancamentoDto;
+    }
+
+    public static Lancamento converterLancamentoDtoParaPersistirLancamento(LancamentoDto lancamentoDto) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Lancamento lancamento = new Lancamento();
+        lancamento.setData(dateFormat.parse(lancamentoDto.getData()));
+        lancamento.setTipo(TipoEnum.valueOf(lancamentoDto.getTipo()));
+        lancamento.setDescricao(lancamentoDto.getDescricao());
+        lancamento.setLocalizacao(lancamentoDto.getLocalizacao());
+        lancamento.setFuncionario(new Funcionario());
+        lancamento.getFuncionario().setId(lancamentoDto.getFuncionarioId());
+
+        return lancamento;
+    }
+
+    public static Lancamento converterLancamentoDtoParaAtualizarLancamento(LancamentoDto lancamentoDto, Optional<Lancamento> optionalLancamento) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Lancamento lancamento = optionalLancamento.get();
+
+        lancamento.setId(lancamentoDto.getId().get());
+        lancamento.setData(dateFormat.parse(lancamentoDto.getData()));
+        lancamento.setTipo(TipoEnum.valueOf(lancamentoDto.getTipo()));
+        lancamento.setDescricao(lancamentoDto.getDescricao());
+        lancamento.setLocalizacao(lancamentoDto.getLocalizacao());
+        lancamento.setFuncionario(new Funcionario());
+        lancamento.getFuncionario().setId(lancamentoDto.getFuncionarioId());
+
+        return lancamento;
     }
 }
