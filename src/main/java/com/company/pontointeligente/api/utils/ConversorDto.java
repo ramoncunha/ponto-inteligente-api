@@ -112,7 +112,7 @@ public abstract class ConversorDto {
         lancamentoDto.setTipo(lancamento.getTipo().toString());
         lancamentoDto.setDescricao(lancamento.getDescricao());
         lancamentoDto.setLocalizacao(lancamento.getLocalizacao());
-        lancamentoDto.setFuncionarioId(lancamento.getId());
+        lancamentoDto.setFuncionarioId(lancamento.getFuncionario().getId());
 
         return lancamentoDto;
     }

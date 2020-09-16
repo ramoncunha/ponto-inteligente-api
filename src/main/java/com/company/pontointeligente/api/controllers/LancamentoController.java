@@ -89,7 +89,7 @@ public class LancamentoController {
             return ResponseEntity.badRequest().body(response);
         }
 
-        this.lancamentoService.persistir(lancamento);
+        lancamento = this.lancamentoService.persistir(lancamento);
         response.setData(ConversorDto.converterLancamentoParaLancamentoDto(lancamento));
         return ResponseEntity.ok(response);
     }
@@ -115,6 +115,22 @@ public class LancamentoController {
         lancamentoNovo = this.lancamentoService.persistir(lancamentoNovo);
         response.setData(ConversorDto.converterLancamentoParaLancamentoDto(lancamentoNovo));
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Response<String>> remover(@PathVariable Long id) {
+        log.info("Removendo lançamento: {}", id);
+        Response<String> response = new Response<>();
+        Optional<Lancamento> lancamento = this.lancamentoService.buscarPorId(id);
+
+        if(!lancamento.isPresent()) {
+            log.error("Erro ao remover lançamento ID: {}", id);
+            response.getErrors().add("Erro ao remover. Registro não encontrado para o id " + id);
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        this.lancamentoService.remover(id);
+        return ResponseEntity.ok(new Response<String>());
     }
 
     private void validarLancamento(LancamentoDto lancamentoDto, BindingResult result) {
