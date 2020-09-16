@@ -148,7 +148,7 @@ public class LancamentoController {
         log.info("Validando funcionário id {}", lancamentoDto.getFuncionarioId());
         Optional<Funcionario> funcionario = this.funcionarioService.buscaPorId(lancamentoDto.getFuncionarioId());
         if(!funcionario.isPresent()) {
-            result.addError(new ObjectError("funcionario", "Funcionário não encontrado. ID Inexistente."));
+            result.addError(new ObjectError("funcionario", "Funcionário não encontrado. ID inexistente."));
         }
     }
 }
