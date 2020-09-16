@@ -16,4 +16,14 @@ public class LancamentoCreator {
         return lancamento;
     }
 
+    public static Lancamento obterDadosLancamentoEsperado() {
+        Lancamento lancamento = new Lancamento();
+        lancamento.setId(1L);
+        lancamento.setData(new Date());
+        lancamento.setTipo(TipoEnum.INICIO_TRABALHO);
+        lancamento.setFuncionario(new Funcionario());
+        lancamento.getFuncionario().setId(1L);
+        return lancamento;
+    }
+
 }
