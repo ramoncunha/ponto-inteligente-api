@@ -1,5 +1,6 @@
 package com.company.pontointeligente.api.security.filters;
 
+import com.company.pontointeligente.api.security.services.JwtUserDetailsServiceImpl;
 import com.company.pontointeligente.api.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +22,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private static final String BEARER_PREFIX = "Bearer ";
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private JwtUserDetailsServiceImpl userDetailsService;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
@@ -41,8 +42,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
-
-            filterChain.doFilter(httpServletRequest, httpServletResponse);
         }
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

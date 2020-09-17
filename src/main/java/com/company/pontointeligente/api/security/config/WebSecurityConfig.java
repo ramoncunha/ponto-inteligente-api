@@ -2,6 +2,7 @@ package com.company.pontointeligente.api.security.config;
 
 import com.company.pontointeligente.api.security.JwtAuthenticationEntryPoint;
 import com.company.pontointeligente.api.security.filters.JwtAuthenticationTokenFilter;
+import com.company.pontointeligente.api.security.services.JwtUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
     @Autowired
-    private UserDetailsService userDetailsService;
+    private JwtUserDetailsServiceImpl userDetailsService;
 
     @Autowired
     public void configureAuthentication(AuthenticationManagerBuilder builder) throws Exception {
