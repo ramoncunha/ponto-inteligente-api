@@ -1,6 +1,6 @@
 package com.company.pontointeligente.api.security;
 
-import com.company.pontointeligente.api.entities.Usuario;
+import com.company.pontointeligente.api.security.entities.Usuario;
 import com.company.pontointeligente.api.enums.PerfilEnum;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

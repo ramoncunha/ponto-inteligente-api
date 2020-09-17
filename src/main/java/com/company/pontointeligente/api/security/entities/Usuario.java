@@ -1,4 +1,4 @@
-package com.company.pontointeligente.api.entities;
+package com.company.pontointeligente.api.security.entities;
 
 import com.company.pontointeligente.api.enums.PerfilEnum;
 

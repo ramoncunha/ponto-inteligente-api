@@ -1,8 +1,8 @@
-package com.company.pontointeligente.api.security.services;
+package com.company.pontointeligente.api.security.services.impl;
 
-import com.company.pontointeligente.api.entities.Usuario;
+import com.company.pontointeligente.api.security.entities.Usuario;
 import com.company.pontointeligente.api.security.JwtUserFactory;
-import com.company.pontointeligente.api.services.UsuarioService;
+import com.company.pontointeligente.api.security.services.UsuarioService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

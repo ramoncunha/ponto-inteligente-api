@@ -1,8 +1,8 @@
-package com.company.pontointeligente.api.services.impl;
+package com.company.pontointeligente.api.security.services.impl;
 
-import com.company.pontointeligente.api.entities.Usuario;
-import com.company.pontointeligente.api.repositories.UsuarioRepository;
-import com.company.pontointeligente.api.services.UsuarioService;
+import com.company.pontointeligente.api.security.entities.Usuario;
+import com.company.pontointeligente.api.security.repositories.UsuarioRepository;
+import com.company.pontointeligente.api.security.services.UsuarioService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

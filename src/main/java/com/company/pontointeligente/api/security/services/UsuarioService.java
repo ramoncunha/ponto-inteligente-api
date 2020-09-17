@@ -1,6 +1,6 @@
-package com.company.pontointeligente.api.services;
+package com.company.pontointeligente.api.security.services;
 
-import com.company.pontointeligente.api.entities.Usuario;
+import com.company.pontointeligente.api.security.entities.Usuario;
 
 import java.util.Optional;
 
