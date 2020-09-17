@@ -1,4 +1,4 @@
-package com.company.pontointeligente.api.services.impl;
+package com.company.pontointeligente.api.security.services;
 
 import com.company.pontointeligente.api.entities.Usuario;
 import com.company.pontointeligente.api.security.JwtUserFactory;
