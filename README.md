@@ -23,6 +23,8 @@ Faça uma requisição POST para /auth. No body deve conter o seguinte objeto:
 }
 ```
 
+Utilize o token retornado para as próximas requisições no sistema. Adicione no header "Bearer {token}".
+
 ## 💻 Configuração para Desenvolvimento
 
 Execute os comandos abaixo para buildar o projeto.
